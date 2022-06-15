@@ -75,3 +75,21 @@ def get_timeline(user_id):
         'user_id': tweet['user_id'],
         'tweet': tweet['tweet']
     } for tweet in timeline]
+
+def get_user_id_and_password(email):
+    row = current_app.database.execute(text("""
+        SELECT
+            id,
+            hashed_password
+        FROM users
+        WHERE email = :email
+    """), {'email' : email}).fetchone()
+
+    return {
+        'id' : row['id'],
+        'hashed_password' : row['hashed_password']
+    } if row else None
+
+
+
+
