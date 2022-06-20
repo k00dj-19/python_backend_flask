@@ -1,4 +1,4 @@
-#test_endpoints.py
+#test_view.py
 import config
 
 import pytest
